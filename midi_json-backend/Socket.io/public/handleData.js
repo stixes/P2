@@ -74,41 +74,40 @@
          "time": 0.4883720930232558,
          "velocity": 0.2204724409448819
        }}
-     
+
 // Onclick events (button submit)
 function selectJson() {
     let selectValue = document.getElementById("select").value
     switch(selectValue) {
-      case '1':  
+      case '1':
         socket.emit("send Json", json1);
         break
-      case '2':  
+      case '2':
         socket.emit("send Json", json2);
         break
-      case '3':  
+      case '3':
         socket.emit("send Json", json3);
         break
-      case '4':  
+      case '4':
         socket.emit("send Json", json4);
         break
-      case '5':  
+      case '5':
         socket.emit("send Json", json5);
         break
-      case '6':  
+      case '6':
         socket.emit("send Json", json6);
         break
-      case '7':  
+      case '7':
         socket.emit("send Json", json7);
         break
-      case '8':  
+      case '8':
         socket.emit("send Json", json8);
         break
       }
 }
 
 // listen from server and show data on screen to check
-socket.on("send Json", function(data) {
+socket.on("send Json", function playDemo(data) {
     document.getElementById("messages").innerText =(JSON.stringify(data));
     window.scrollTo(0, document.body.scrollHeight);
 });
-     

@@ -1,3 +1,5 @@
+var socket = io("http://localhost:3000");
+
 function enableWebMidi() {
   WebMidi.enable()
   .then(() => console.log("WebMIDI Enabled"));
@@ -13,30 +15,30 @@ function logMidiIO() {
 }
 
 //  Loads the JSON file
-async function getData(url) {
-  const response = await fetch(url);
-  return response.json();
-}
+// async function getData(url) {
+//   const response = await fetch(url);
+//   return response.json();
+// }
 
 function sortNoteOnAndOff() {
   for (let i = 1; i < (globalArray[0].events - 2).length; i++) {
-    
+
   }
 }
 
 //Pairing note-on and note-off events
 function pairNoteOnAndOff(noteOnArray, noteOffArray) {
   for (let i = 1; i < (globalArray[0].events - 2).length; i++) {
-    
+
   }
 }
 
 //  Plays the JSON file
-async function playDemo(jsonURL) {
-    
+socket.on("send Array", function playDemo(finishedNoteArray) {
+
   let jsonOutput = globalArray;
 
-console.log("Blah\n");  
+console.log("Blah\n");
 console.log(jsonOutput[0].events[1]);
 console.log(jsonOutput[1].events.length);
 
@@ -79,7 +81,7 @@ console.log(jsonOutput[1].events.length);
       }
     }
   }
-}
+});
 
 function disableWebMidi() {
   WebMidi.disable();

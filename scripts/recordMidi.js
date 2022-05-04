@@ -1,3 +1,5 @@
+var socket = io("http://localhost:3000");
+
 class Note {
   constructor(name, octave, accidental, velocity, startTime, duration) {
     this.name = name;
@@ -76,7 +78,7 @@ function recordMidi(outputArray, inputDevice) {
     //Error message if no MIDI devices are found
     if (WebMidi.inputs.length < 1) {
       document.body.innerHTML+= "No device detected.";
-    } 
+    }
 
     const mySynth = WebMidi.inputs[inputDevice];
 
@@ -187,6 +189,7 @@ function pairNoteEvents(trackNumber) {
   }
   finishedNoteArray.unshift(trackNumber);
   console.log(finishedNoteArray);
+  socket.emit("Send array", finishedNoteArray);
 }
 
 //Disables the MIDI recording
