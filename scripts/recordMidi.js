@@ -22,6 +22,7 @@ class ScoreInfo {
 }
 
 var globalArray;
+var thingy;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms)); //stolen
@@ -180,7 +181,12 @@ function pairNoteEvents(trackNumber) {
           note.name = noteOnArray[j].pitch;
           note.velocity = noteOnArray[j].velocity;
           note.startTime = noteOnArray[j].startTick;
+          note.startTime = note.startTime*1000/256;
           note.duration = globalArray[0].events[i].duration;
+          // remove T from duration to make it readable by WebMidi
+          note.duration = note.duration.slice(1);
+          note.duration = parseInt(note.duration);
+          note.duration = note.duration*1000/256;
           finishedNoteArray.push(note);
           noteOnArray.splice(j, 1);
         }
@@ -188,6 +194,7 @@ function pairNoteEvents(trackNumber) {
     }
   }
   finishedNoteArray.unshift(trackNumber);
+  thingy = finishedNoteArray;
   console.log(finishedNoteArray);
   socket.emit("Send array", finishedNoteArray);
 }

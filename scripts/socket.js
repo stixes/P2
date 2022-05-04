@@ -18,7 +18,7 @@ io.on("connection", function(socket) {
 
 // Render to web (socket.html) to communicate
 app.get('/', function(req, res){
-	res.sendFile(__dirname + './index.html');
+	res.sendFile(__dirname + '/PlayJSON.html');
 });
 
 http.listen(port, function(){
